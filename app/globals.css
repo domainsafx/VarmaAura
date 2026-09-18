@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@keyframes kenburns-slow {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.animate-kenburns-slow {
+  animation: kenburns-slow 20s ease-out forwards;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f8f6ee;
+  color: #1b2118;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #b8934e;
+  color: #f8f6ee;
+}
+
+/* ---------------- shared utility classes ---------------- */
+@layer utilities {
+  .wrap {
+    max-width: 1360px;
+    margin-inline: auto;
+    padding-inline: 6vw;
+  }
+  @media (min-width: 1500px) {
+    .wrap {
+      padding-inline: 90px;
+    }
+  }
+
+  .nav-link {
+    position: relative;
+    padding-bottom: 4px;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.4s cubic-bezier(0.16, 0.84, 0.28, 1);
+  }
+  .nav-link:hover::after,
+  .nav-link[data-active="true"]::after {
+    width: 100%;
+  }
+
+  .img-frame {
+    overflow: hidden;
+    border-radius: 2px;
+    position: relative;
+  }
+  .img-frame img {
+    transition: transform 1.2s cubic-bezier(0.16, 0.84, 0.28, 1);
+  }
+  .img-frame:hover img {
+    transform: scale(1.05);
+  }
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-cormorant), serif;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+}
