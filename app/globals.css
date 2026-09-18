@@ -11,6 +11,52 @@
   }
 }
 
+/* Experience Teaser Marquee */
+
+.experience-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.experience-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 1px;
+
+  animation: experience-marquee-scroll 28s linear infinite;
+
+  will-change: transform;
+}
+
+/* Pause when user hovers over the cards */
+.experience-marquee:hover .experience-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes experience-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.5px));
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .experience-marquee-track {
+    animation-duration: 22s;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .experience-marquee-track {
+    animation: none;
+  }
+}
+
 .animate-kenburns-slow {
   animation: kenburns-slow 20s ease-out forwards;
   will-change: transform;
